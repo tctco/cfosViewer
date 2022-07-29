@@ -111,7 +111,7 @@ export default {
       let dots = res.data.dots
       this.pcs = new BABYLON.PointsCloudSystem("pcs", this.pcsSize, this.scene)
       this.pcs.addPoints(dots.length, (p, i, s) => {
-        p.position = new BABYLON.Vector3(-dots[i][0] - 0.8, dots[i][1] - 0.3, dots[i][2] + 0.1)
+        p.position = new BABYLON.Vector3(dots[i][0], dots[i][1], dots[i][2])
         p.color = new BABYLON.Color4(.8, .9, .08, .8)
       })
       this.pcs.buildMeshAsync().then(res => {
