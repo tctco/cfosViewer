@@ -101,13 +101,13 @@ export default {
     this.camera.wheelPrecision = 40
     this.axes = new BABYLON.AxesViewer(this.scene, 1)
 
-    let importPromise = BABYLON.SceneLoader.ImportMeshAsync("", '/src/assets/', 'recreated.glb', this.scene, mesh => console.log(mesh))
+    let importPromise = BABYLON.SceneLoader.ImportMeshAsync("", '/', 'recreated.glb', this.scene, mesh => console.log(mesh))
     importPromise.then((result) => {
       this.model = result.meshes[1];
       this.camera.setTarget(result.meshes[0])
       this.model.visibility = this.modelVisibility
     })
-    axios.get('/src/assets/dots.json').then(res => {
+    axios.get('/dots.json').then(res => {
       let dots = res.data.dots
       this.pcs = new BABYLON.PointsCloudSystem("pcs", this.pcsSize, this.scene)
       this.pcs.addPoints(dots.length, (p, i, s) => {
