@@ -1,27 +1,31 @@
 <template>
   <canvas id="renderCanvas"></canvas>
   <div class="slidecontainer">
-    <label>Point Cloud Size:
-      <input type="range" min="0" max="10" class="slider" v-model="this.pcsSize" @change="handlePcsSizeChange">
-    </label>
-    <label>Model Visibility:
-      <input type="range" min="0" max="1" step="0.1" class="slider" v-model="this.modelVisibility"
-        @change="handleModelVisibilityChange">
-    </label>
-    <label>Glow Intensity:
-      <input type="range" min="0" max="1" step="0.1" class="slider" v-model="this.glowIntensity"
-        @change="handleGlowIntensityChange">
-    </label>
-    <label>Background Brightness:
-      <input type="range" min="0.7" max="1" step="0.03" class="slider" v-model="this.brightness"
-        @change="handleBrightnessChange">
-    </label>
-    <label>Color:
-      <color-picker v-model:pureColor="this.color" v-on:pure-color-change="handleColorChange" />
-    </label>
-    <label>Display AxesViewer:
-      <input type="checkbox" v-model="displayAxes" @change="handleAxesToggleChange"/>
-    </label>
+    <div>
+      <label>Point Cloud Size:
+        <input type="range" min="0" max="10" class="slider" v-model="this.pcsSize" @change="handlePcsSizeChange">
+      </label>
+      <label>Model Visibility:
+        <input type="range" min="0" max="1" step="0.1" class="slider" v-model="this.modelVisibility"
+          @change="handleModelVisibilityChange">
+      </label>
+      <label>Glow Intensity:
+        <input type="range" min="0" max="1" step="0.1" class="slider" v-model="this.glowIntensity"
+          @change="handleGlowIntensityChange">
+      </label>
+    </div>
+    <div>
+      <label>Background Brightness:
+        <input type="range" min="0.7" max="1" step="0.03" class="slider" v-model="this.brightness"
+          @change="handleBrightnessChange">
+      </label>
+      <label>Color:
+        <color-picker v-model:pureColor="this.color" v-on:pure-color-change="handleColorChange" />
+      </label>
+      <label>Display AxesViewer:
+        <input type="checkbox" v-model="displayAxes" @change="handleAxesToggleChange" />
+      </label>
+    </div>
 
   </div>
 </template>
@@ -79,7 +83,7 @@ export default {
       }
       this.pcs.setParticles()
     },
-    handleAxesToggleChange: function() {
+    handleAxesToggleChange: function () {
       if (this.displayAxes) this.axes = new BABYLON.AxesViewer(this.scene, 1)
       else this.axes.dispose()
     },
